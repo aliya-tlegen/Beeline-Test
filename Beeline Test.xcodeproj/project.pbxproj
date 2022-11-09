@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,12 @@
 		4D273255291BEEF500A0CDAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D273253291BEEF500A0CDAA /* Main.storyboard */; };
 		4D273257291BEEF600A0CDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D273256291BEEF600A0CDAA /* Assets.xcassets */; };
 		4D27325A291BEEF600A0CDAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D273258291BEEF600A0CDAA /* LaunchScreen.storyboard */; };
+		DFD7256C456432A4E1645B94 /* Pods_Beeline_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC43A41B55D7BC28CAC09FF /* Pods_Beeline_Test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BC43A41B55D7BC28CAC09FF /* Pods_Beeline_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beeline_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0EE2BE8B713423FA1BE052 /* Pods-Beeline Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beeline Test.release.xcconfig"; path = "Target Support Files/Pods-Beeline Test/Pods-Beeline Test.release.xcconfig"; sourceTree = "<group>"; };
 		4D27324A291BEEF500A0CDAA /* Beeline Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beeline Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D27324D291BEEF500A0CDAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D27324F291BEEF500A0CDAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		4D273256291BEEF600A0CDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D273259291BEEF600A0CDAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D27325B291BEEF600A0CDAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B904F10DAAD01951404D7963 /* Pods-Beeline Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beeline Test.debug.xcconfig"; path = "Target Support Files/Pods-Beeline Test/Pods-Beeline Test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD7256C456432A4E1645B94 /* Pods_Beeline_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1709ECC7F593048AC63450FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0BC43A41B55D7BC28CAC09FF /* Pods_Beeline_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D273241291BEEF500A0CDAA = {
 			isa = PBXGroup;
 			children = (
 				4D27324C291BEEF500A0CDAA /* Beeline Test */,
 				4D27324B291BEEF500A0CDAA /* Products */,
+				832A06A7D94710383D37DD10 /* Pods */,
+				1709ECC7F593048AC63450FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = "Beeline Test";
 			sourceTree = "<group>";
 		};
+		832A06A7D94710383D37DD10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B904F10DAAD01951404D7963 /* Pods-Beeline Test.debug.xcconfig */,
+				2C0EE2BE8B713423FA1BE052 /* Pods-Beeline Test.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D27325E291BEEF600A0CDAA /* Build configuration list for PBXNativeTarget "Beeline Test" */;
 			buildPhases = (
+				14891652E828C17F335C4189 /* [CP] Check Pods Manifest.lock */,
 				4D273246291BEEF500A0CDAA /* Sources */,
 				4D273247291BEEF500A0CDAA /* Frameworks */,
 				4D273248291BEEF500A0CDAA /* Resources */,
+				441A69B6A3D6B761468301EA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -103,7 +130,7 @@
 				};
 			};
 			buildConfigurationList = 4D273245291BEEF500A0CDAA /* Build configuration list for PBXProject "Beeline Test" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14891652E828C17F335C4189 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Beeline Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		441A69B6A3D6B761468301EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beeline Test/Pods-Beeline Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beeline Test/Pods-Beeline Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Beeline Test/Pods-Beeline Test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D273246291BEEF500A0CDAA /* Sources */ = {
@@ -216,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +351,7 @@
 		};
 		4D27325F291BEEF600A0CDAA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B904F10DAAD01951404D7963 /* Pods-Beeline Test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +380,7 @@
 		};
 		4D273260291BEEF600A0CDAA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C0EE2BE8B713423FA1BE052 /* Pods-Beeline Test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
