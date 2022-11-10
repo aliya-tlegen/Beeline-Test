@@ -11,6 +11,8 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Private variables -
     
+    
+    
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
@@ -20,6 +22,8 @@ class DetailsViewController: UIViewController {
     }
     
     // MARK: - Setup -
+    
+    
     
     // MARK: - Actions -
 

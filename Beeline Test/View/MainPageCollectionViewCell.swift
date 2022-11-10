@@ -1,65 +1,82 @@
 //
-//  MainPageCollectionViewCell.swift
+//  MainPageTableViewCell.swift
 //  Beeline Test
 //
-//  Created by Алия Тлеген on 10.11.2022.
+//  Created by Алия Тлеген on 09.11.2022.
 //
 
 import UIKit
 
 class MainPageCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "MainPageCollectionViewCell"
+    // MARK: - Public variables -
+    
+    static let identifier = "MainPageTableViewCell"
     
     // MARK: - Private variables -
     
-    private lazy var sectionButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.textAlignment = .center
-        button.backgroundColor = .clear
-        button.isUserInteractionEnabled = false
-        return button
+    private lazy var label: UILabel = {
+       let label = UILabel()
+        return label
     }()
-
-    // MARK: - Initialization -
-
+    
+    public var containerView: UIView = {
+        let containerView = UIView()
+        containerView.backgroundColor = .yellow
+        containerView.clipsToBounds = true
+        containerView.layer.cornerRadius = 10
+        return containerView
+    }()
+    
+    // MARK: - Lifecycle -
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupViews()
+        setupConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        clipsToBounds = true
-        layer.cornerRadius = 15
-        layer.borderWidth = 1
-    }
-    
-    func configureCell(title: String?, isSelected: Bool) {
-        sectionButton.setTitle(title, for: .normal)
-        sectionButton.setTitleColor(isSelected ? .blue : .black, for: .normal)
-//        layer.borderColor = isSelected ? Colors.green.cgColor : Colors.borderColor.cgColor
     }
     
     // MARK: - Setup -
     
     private func setupViews() {
-        contentView.addSubview(sectionButton)
-        setupConstraints()
+        contentView.addSubview(containerView)
+        containerView.addSubview(label)
     }
     
-    func setupConstraints() {
-        sectionButton.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(7)
-            $0.right.left.equalToSuperview()
+    private func setupConstraints() {
+        label.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        containerView.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
+            $0.right.left.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
+    
+    // MARK: - Configuration -
+    
+    func configure(model: ProductData) {
+        label.text = model.title
+    }
+
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
+//
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
+    
+    
+
 }
