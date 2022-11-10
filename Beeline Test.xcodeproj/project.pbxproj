@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		4D27324E291BEEF500A0CDAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D27324D291BEEF500A0CDAA /* AppDelegate.swift */; };
 		4D273250291BEEF500A0CDAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D27324F291BEEF500A0CDAA /* SceneDelegate.swift */; };
-		4D273252291BEEF500A0CDAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D273251291BEEF500A0CDAA /* ViewController.swift */; };
+		4D273252291BEEF500A0CDAA /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D273251291BEEF500A0CDAA /* MainPageViewController.swift */; };
 		4D273255291BEEF500A0CDAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D273253291BEEF500A0CDAA /* Main.storyboard */; };
 		4D273257291BEEF600A0CDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D273256291BEEF600A0CDAA /* Assets.xcassets */; };
 		4D27325A291BEEF600A0CDAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D273258291BEEF600A0CDAA /* LaunchScreen.storyboard */; };
+		4D34EA8F291C005400D98EFA /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34EA8E291C005400D98EFA /* Product.swift */; };
+		4D34EA91291C013A00D98EFA /* MainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D34EA90291C013A00D98EFA /* MainPageTableViewCell.swift */; };
+		4D698EE9291C44E600FE04E4 /* MainPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D698EE8291C44E600FE04E4 /* MainPageCollectionViewCell.swift */; };
+		4D799260291D2DFC0051CAB6 /* String Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D79925F291D2DFC0051CAB6 /* String Extension.swift */; };
+		4D799262291D2E700051CAB6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D799261291D2E700051CAB6 /* MainViewController.swift */; };
+		4D8CB8F3291C18CD00F4AC89 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CB8F2291C18CD00F4AC89 /* DetailsViewController.swift */; };
 		DFD7256C456432A4E1645B94 /* Pods_Beeline_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC43A41B55D7BC28CAC09FF /* Pods_Beeline_Test.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,11 +28,17 @@
 		4D27324A291BEEF500A0CDAA /* Beeline Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beeline Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D27324D291BEEF500A0CDAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D27324F291BEEF500A0CDAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4D273251291BEEF500A0CDAA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4D273251291BEEF500A0CDAA /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		4D273254291BEEF500A0CDAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D273256291BEEF600A0CDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D273259291BEEF600A0CDAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D27325B291BEEF600A0CDAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D34EA8E291C005400D98EFA /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		4D34EA90291C013A00D98EFA /* MainPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageTableViewCell.swift; sourceTree = "<group>"; };
+		4D698EE8291C44E600FE04E4 /* MainPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4D79925F291D2DFC0051CAB6 /* String Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extension.swift"; sourceTree = "<group>"; };
+		4D799261291D2E700051CAB6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4D8CB8F2291C18CD00F4AC89 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		B904F10DAAD01951404D7963 /* Pods-Beeline Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beeline Test.debug.xcconfig"; path = "Target Support Files/Pods-Beeline Test/Pods-Beeline Test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				4D27324C291BEEF500A0CDAA /* Beeline Test */,
+				4D799263291D3E040051CAB6 /* Other */,
 				4D27324B291BEEF500A0CDAA /* Products */,
 				832A06A7D94710383D37DD10 /* Pods */,
 				1709ECC7F593048AC63450FC /* Frameworks */,
@@ -71,15 +84,52 @@
 		4D27324C291BEEF500A0CDAA /* Beeline Test */ = {
 			isa = PBXGroup;
 			children = (
-				4D27324D291BEEF500A0CDAA /* AppDelegate.swift */,
-				4D27324F291BEEF500A0CDAA /* SceneDelegate.swift */,
-				4D273251291BEEF500A0CDAA /* ViewController.swift */,
+				4D34EA8D291C003A00D98EFA /* Model */,
+				4D34EA8C291C002800D98EFA /* View */,
+				4D34EA8B291C002000D98EFA /* Controller */,
+				4D27325B291BEEF600A0CDAA /* Info.plist */,
+				4D79925F291D2DFC0051CAB6 /* String Extension.swift */,
+			);
+			path = "Beeline Test";
+			sourceTree = "<group>";
+		};
+		4D34EA8B291C002000D98EFA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4D273251291BEEF500A0CDAA /* MainPageViewController.swift */,
+				4D8CB8F2291C18CD00F4AC89 /* DetailsViewController.swift */,
+				4D799261291D2E700051CAB6 /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4D34EA8C291C002800D98EFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D698EE8291C44E600FE04E4 /* MainPageCollectionViewCell.swift */,
+				4D34EA90291C013A00D98EFA /* MainPageTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4D34EA8D291C003A00D98EFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4D34EA8E291C005400D98EFA /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4D799263291D3E040051CAB6 /* Other */ = {
+			isa = PBXGroup;
+			children = (
 				4D273253291BEEF500A0CDAA /* Main.storyboard */,
 				4D273256291BEEF600A0CDAA /* Assets.xcassets */,
 				4D273258291BEEF600A0CDAA /* LaunchScreen.storyboard */,
-				4D27325B291BEEF600A0CDAA /* Info.plist */,
+				4D27324D291BEEF500A0CDAA /* AppDelegate.swift */,
+				4D27324F291BEEF500A0CDAA /* SceneDelegate.swift */,
 			);
-			path = "Beeline Test";
+			path = Other;
 			sourceTree = "<group>";
 		};
 		832A06A7D94710383D37DD10 /* Pods */ = {
@@ -88,7 +138,6 @@
 				B904F10DAAD01951404D7963 /* Pods-Beeline Test.debug.xcconfig */,
 				2C0EE2BE8B713423FA1BE052 /* Pods-Beeline Test.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,9 +256,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D273252291BEEF500A0CDAA /* ViewController.swift in Sources */,
+				4D273252291BEEF500A0CDAA /* MainPageViewController.swift in Sources */,
+				4D34EA8F291C005400D98EFA /* Product.swift in Sources */,
+				4D34EA91291C013A00D98EFA /* MainPageTableViewCell.swift in Sources */,
+				4D698EE9291C44E600FE04E4 /* MainPageCollectionViewCell.swift in Sources */,
 				4D27324E291BEEF500A0CDAA /* AppDelegate.swift in Sources */,
+				4D799260291D2DFC0051CAB6 /* String Extension.swift in Sources */,
+				4D799262291D2E700051CAB6 /* MainViewController.swift in Sources */,
 				4D273250291BEEF500A0CDAA /* SceneDelegate.swift in Sources */,
+				4D8CB8F3291C18CD00F4AC89 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +417,6 @@
 				INFOPLIST_FILE = "Beeline Test/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,7 +445,6 @@
 				INFOPLIST_FILE = "Beeline Test/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
