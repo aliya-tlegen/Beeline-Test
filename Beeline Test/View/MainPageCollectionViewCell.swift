@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainPageCollectionViewCell: UICollectionViewCell {
     
@@ -15,9 +16,19 @@ class MainPageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private variables -
     
-    private lazy var label: UILabel = {
-       let label = UILabel()
+    private lazy var productTitle: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .left
         return label
+    }()
+    
+    private lazy var thumbnail: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 10
+        return image
     }()
     
     public var containerView: UIView = {
@@ -45,12 +56,22 @@ class MainPageCollectionViewCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(containerView)
-        containerView.addSubview(label)
+        containerView.addSubview(productTitle)
+        containerView.addSubview(thumbnail)
     }
     
     private func setupConstraints() {
-        label.snp.makeConstraints {
+        thumbnail.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(5)
+//            $0.left.right.equalToSuperview().offset(5)
+            $0.width.equalTo(200)
+            $0.height.equalTo(200)
+        }
+        productTitle.snp.makeConstraints {
             $0.center.equalToSuperview()
+            $0.top.equalTo(thumbnail.snp.bottom)
+            $0.left.right.equalToSuperview().inset(5)
         }
         containerView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -63,7 +84,11 @@ class MainPageCollectionViewCell: UICollectionViewCell {
     // MARK: - Configuration -
     
     func configure(model: ProductData) {
-        label.text = model.title
+        productTitle.text = model.title
+        if let image = model.thumbnail {
+            let source = ImageResource(downloadURL: URL(string: model.thumbnail ?? "")!)
+            thumbnail.kf.setImage(with: source)
+        }
     }
 
 //    override func awakeFromNib() {

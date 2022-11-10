@@ -7,14 +7,30 @@
 
 import UIKit
 import SnapKit
+import Moya
 
 class MainPageViewController: UIViewController {
     
     // MARK: - Public variables -
     
     public var items: Product?
-    let networkManager = NetworkManager()
+    let networkProvider = MoyaProvider<NetworkService>()
+    private let mainPageViewModel: MainPageViewModel?
 
+    
+    init(mainPageViewModel: MainPageViewModel){
+        self.mainPageViewModel = mainPageViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func fetchData(){
+        mainPageViewModel?.fetchProducts()
+    }
+    
     // MARK: - Private variables -
     
     private var index: Int = 0
@@ -43,11 +59,12 @@ class MainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Smartphone Shop"
+        navigationItem.title = "Online Store"
         view.backgroundColor = .white
+        mainPageViewModel?.delegate = self
         setupViews()
         setupConstraints()
-        parseData()
+        fetchData()
     }
     
     // MARK: - Setup -
@@ -64,20 +81,6 @@ class MainPageViewController: UIViewController {
     }
     
     // MARK: - Actions -
-    
-    func parseData() {
-        networkManager.obtainProducts { [weak self] (result) in
-            switch result {
-            case .success(let products):
-                self?.items? = products
-                DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
     
 }
 
@@ -102,10 +105,6 @@ extension MainPageViewController: UICollectionViewDataSource {
 
 extension MainPageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let leftAndRightPaddings: CGFloat = 50.0
-//        let numberOfItemsPerRow: CGFloat = 2.0
-//
-//        let width = (collectionView.frame.width-leftAndRightPaddings)/numberOfItemsPerRow
         return CGSize(width: 200, height: 300)
     }
 }
@@ -116,3 +115,11 @@ extension MainPageViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+extension MainPageViewController: MainPageViewModelProtocol {
+    func loadProducts() {
+        self.items = mainPageViewModel?.productsModel
+        self.collectionView.reloadData()
+    }
+}
+

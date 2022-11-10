@@ -10,7 +10,7 @@ import Foundation
 struct Constant{
     
     struct API {
-        static let baseURL = "https://dummyjson.com/products"
+        static let baseURL = "https://dummyjson.com"
     }
     
 }
