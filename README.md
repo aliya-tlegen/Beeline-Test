@@ -2,8 +2,8 @@
 
 Task: Write a simple project with 2 screens.
 
-The first screen is a list of products.
-Clicking on a product opens a screen with its details.
+- The first screen is a list of products.
+- Clicking on a product opens a screen with its details.
 
 # Demo
 
