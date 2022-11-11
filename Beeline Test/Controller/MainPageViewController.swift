@@ -44,6 +44,7 @@ class MainPageViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         collectionView.setCollectionViewLayout(collectionViewFlowLayout, animated: true)
         collectionViewFlowLayout.scrollDirection = .vertical
         collectionView.showsVerticalScrollIndicator = false
@@ -105,13 +106,18 @@ extension MainPageViewController: UICollectionViewDataSource {
 
 extension MainPageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 300)
+        let width = 200
+        let height = 300
+        return CGSize(width: width, height: height)
     }
 }
 
 extension MainPageViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailsViewController()
+        if let items = items?.productData[indexPath.row] {
+            vc.product = items
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -122,4 +128,3 @@ extension MainPageViewController: MainPageViewModelProtocol {
         self.collectionView.reloadData()
     }
 }
-
