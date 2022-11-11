@@ -11,12 +11,23 @@ import Moya
 
 class MainPageViewController: UIViewController {
     
-    // MARK: - Public variables -
+    // MARK: - Variables -
     
     public var items: Product?
+    public var filteredItems: [ProductData?] = []
+    
     let networkProvider = MoyaProvider<NetworkService>()
     private let mainPageViewModel: MainPageViewModel?
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
 
+    var searchController: UISearchController!
     
     init(mainPageViewModel: MainPageViewModel){
         self.mainPageViewModel = mainPageViewModel
@@ -30,8 +41,6 @@ class MainPageViewController: UIViewController {
     private func fetchData(){
         mainPageViewModel?.fetchProducts()
     }
-    
-    // MARK: - Private variables -
     
     private var index: Int = 0
 
@@ -60,13 +69,16 @@ class MainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Online Store"
         view.backgroundColor = .white
         mainPageViewModel?.delegate = self
         setupViews()
         setupConstraints()
+        setupNavigationItem()
+        setupSearchController()
         fetchData()
     }
+    
+    
     
     // MARK: - Setup -
     
@@ -80,12 +92,76 @@ class MainPageViewController: UIViewController {
         }
     }
     
+    private func setupNavigationItem(){
+        navigationItem.title = "Online Store"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .search,
+            target: self,
+            action:#selector(didTapSearch)
+        )
+    }
+    
+    func setupSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
+    }
+    
     // MARK: - Actions -
     
+    @objc private func didTapSearch(){
+        showSearchView()
+    }
+    
+    func showSearchView(){
+        searchController.searchBar.alpha = 0
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.titleView = searchController.searchBar
+        navigationItem.setRightBarButton(nil, animated: true)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.searchController.searchBar.alpha = 1
+          }, completion: { finished in
+              self.searchController.searchBar.becomeFirstResponder()
+        })
+    }
+    
+    func hideSearchView(){
+        navigationItem.setRightBarButton(navigationItem.rightBarButtonItem, animated: true)
+        navigationItem.titleView?.alpha = 0
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchController.searchBar.alpha = 0
+            self.navigationItem.titleView?.alpha = 1
+             }, completion: { finished in
+                 self.searchController.searchBar.resignFirstResponder()
+           })
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        if let items = items?.productData {
+            filteredItems = items.filter { (item: ProductData) -> Bool in
+                let category = item.category.lowercased().contains(searchText.lowercased())
+                let title = item.title.lowercased().contains(searchText.lowercased())
+                let brand = item.brand.lowercased().contains(searchText.lowercased())
+                return category || title || brand
+            }
+            collectionView.reloadData()
+        }
+    }
 }
+
+// MARK: - CollectionViews Extensions -
 
 extension MainPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredItems.count
+        }
         if let items = items?.productData {
             return items.count
         }
@@ -93,14 +169,14 @@ extension MainPageViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let items = items?.productData[indexPath.row] {
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainPageCollectionViewCell.identifier, for: indexPath) as? MainPageCollectionViewCell {
-                cell.configure(model: items)
-                return cell
-                }
-            }
-            return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainPageCollectionViewCell.identifier, for: indexPath) as! MainPageCollectionViewCell
+        if isFiltering {
+            cell.configure(model: filteredItems[indexPath.row]!)
+        } else {
+            cell.configure(model: (items?.productData[indexPath.row])!)
         }
+        return cell
+    }
 }
 
 extension MainPageViewController: UICollectionViewDelegateFlowLayout {
@@ -115,7 +191,11 @@ extension MainPageViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailsViewController()
         if let items = items?.productData[indexPath.row] {
-            vc.product = items
+            if isFiltering {
+                vc.product = filteredItems[indexPath.row]
+            } else {
+                vc.product = items
+            }
         }
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -125,5 +205,21 @@ extension MainPageViewController: MainPageViewModelProtocol {
     func loadProducts() {
         self.items = mainPageViewModel?.productsModel
         self.collectionView.reloadData()
+    }
+}
+
+// MARK: - UISearch & UISearchController Extensions -
+
+extension MainPageViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+}
+
+extension MainPageViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.alpha = 0
+        setupNavigationItem()
     }
 }

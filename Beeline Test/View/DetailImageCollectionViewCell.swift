@@ -10,6 +10,8 @@ import Kingfisher
 
 class DetailImageCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Variables -
+    
     static let identifier = "DetailImageCollectionViewCell"
     
     public var isHideActionButton = false
@@ -25,7 +27,7 @@ class DetailImageCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .white
         setupViews()
         setupConstraints()
     }

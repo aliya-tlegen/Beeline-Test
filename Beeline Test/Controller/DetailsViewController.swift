@@ -14,7 +14,7 @@ protocol ActionDelegate {
 
 class DetailsViewController: UIViewController {
     
-    // MARK: - Public variables -
+    // MARK: - Variables -
     
     public var imageCollection = ImageView()
     
@@ -23,8 +23,6 @@ class DetailsViewController: UIViewController {
             setProducts()
         }
     }
-    
-    // MARK: - Private variables -
     
     private lazy var priceWDiscountLabel: UILabel = {
         let label = UILabel()
@@ -48,7 +46,7 @@ class DetailsViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = Fonts.interMedium14
+        label.font = Fonts.interMedium16
         label.textAlignment = .left
         return label
     }()
@@ -124,7 +122,6 @@ class DetailsViewController: UIViewController {
     private func setProducts() {
         guard let product = product else { return }
         titleLabel.text = product.title
-//        categoryLabel.text = product.category
         let price = calculatePercentage(value: product.price, percentageVal: product.discountPercentage)
         priceWDiscountLabel.text = "$\(price.roundToPlaces(places: 2))"
         priceLabel.text = "$\(product.price.roundToPlaces(places: 2))"

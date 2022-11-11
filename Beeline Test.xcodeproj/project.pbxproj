@@ -147,8 +147,8 @@
 		4D27324C291BEEF500A0CDAA /* Beeline Test */ = {
 			isa = PBXGroup;
 			children = (
-				4D442F17291D9632009AC8F2 /* ViewModel */,
 				4DAFD472291D78DF00CABD71 /* Service */,
+				4D442F17291D9632009AC8F2 /* ViewModel */,
 				4D34EA8D291C003A00D98EFA /* Model */,
 				4D34EA8C291C002800D98EFA /* View */,
 				4D34EA8B291C002000D98EFA /* Controller */,

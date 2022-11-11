@@ -10,8 +10,8 @@ import Kingfisher
 
 class ImageView: UIView {
     
-    // MARK: - Public variables -
-//    var delegate: ActionDelegate?
+    // MARK: - Variables -
+
     var currentPage = 0
     
     {
@@ -36,8 +36,6 @@ class ImageView: UIView {
     
     }
     
-    // MARK: - Private variables -
-    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
                     frame: .zero,
@@ -56,7 +54,6 @@ class ImageView: UIView {
         collectionView.reloadData()
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
-//        collectionView.layer.cornerRadius = 12
         return collectionView
     }()
     
@@ -91,7 +88,7 @@ class ImageView: UIView {
         collectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(300)
+            $0.height.equalTo(500)
         }
         pageController.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -101,6 +98,8 @@ class ImageView: UIView {
             $0.bottom.equalToSuperview()
         }
     }
+    
+    // MARK: - Actions -
         
     @objc func changePage(sender: UIPageControl) {
         let x = CGFloat(pageController.currentPage) * collectionView.frame.size.width
