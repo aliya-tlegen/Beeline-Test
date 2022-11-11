@@ -26,7 +26,7 @@ class MainPageCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-//        label.numberOfLines = 0
+        label.font = Fonts.interMedium175
         label.textAlignment = .left
         return label
     }()
@@ -34,7 +34,18 @@ class MainPageCollectionViewCell: UICollectionViewCell {
     private lazy var categoryLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = Fonts.interMedium14
+        label.textColor = .gray
         label.textAlignment = .left
+        return label
+    }()
+    
+    private lazy var priceWDiscountLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        label.font = Fonts.interSemiBold175
+        label.textColor = Colors.red
         return label
     }()
     
@@ -42,6 +53,9 @@ class MainPageCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .left
+        label.font = Fonts.interMedium175
+        label.attributedText = Constant.AttributedText.attributedText
+        label.textColor = .gray
         return label
     }()
     
@@ -54,17 +68,11 @@ class MainPageCollectionViewCell: UICollectionViewCell {
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = Fonts.interMedium14
+        label.textColor = .black
         label.textAlignment = .left
         return label
     }()
-    
-//    public var containerView: UIView = {
-//        let containerView = UIView()
-//        containerView.backgroundColor = .yellow
-//        containerView.clipsToBounds = true
-//        containerView.layer.cornerRadius = 10
-//        return containerView
-//    }()
     
     // MARK: - Lifecycle -
     
@@ -90,6 +98,7 @@ class MainPageCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(thumbnailImage)
         contentView.addSubview(categoryLabel)
+        contentView.addSubview(priceWDiscountLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(starImage)
         contentView.addSubview(ratingLabel)
@@ -113,25 +122,29 @@ class MainPageCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(5)
             $0.left.right.equalToSuperview().inset(10)
         }
+        priceWDiscountLabel.snp.makeConstraints {
+            $0.top.equalTo(categoryLabel.snp.bottom).offset(5)
+            $0.left.equalToSuperview().inset(10)
+        }
         priceLabel.snp.makeConstraints {
             $0.top.equalTo(categoryLabel.snp.bottom).offset(5)
-            $0.left.right.equalToSuperview().inset(10)
+//            $0.left.equalTo(priceWDiscountLabel.snp.right).offset(10)
+            $0.right.equalToSuperview().inset(10)
         }
         starImage.snp.makeConstraints {
-            $0.top.equalTo(priceLabel.snp.bottom).offset(5)
+            $0.top.equalTo(priceWDiscountLabel.snp.bottom).offset(5)
             $0.left.equalToSuperview().offset(10)
             $0.size.equalTo(15)
         }
         ratingLabel.snp.makeConstraints {
-            $0.top.equalTo(priceLabel.snp.bottom).offset(5)
+            $0.top.equalTo(priceWDiscountLabel.snp.bottom).offset(5)
             $0.left.equalTo(starImage.snp.right).offset(5)
         }
-//        containerView.snp.makeConstraints {
-//            $0.top.equalToSuperview()
-//            $0.centerX.equalToSuperview()
-//            $0.right.left.equalToSuperview()
-//            $0.bottom.equalToSuperview()
-//        }
+    }
+    
+    public func calculatePercentage(value: Double, percentageVal: Double) -> Double {
+        let val = value - (value * (percentageVal/100))
+        return val
     }
     
     // MARK: - Configuration -
@@ -142,22 +155,10 @@ class MainPageCollectionViewCell: UICollectionViewCell {
             let source = ImageResource(downloadURL: URL(string: model.thumbnail ?? "")!)
             thumbnailImage.kf.setImage(with: source)
         }
+        let price = calculatePercentage(value: model.price, percentageVal: model.discountPercentage)
         categoryLabel.text = model.category
-        priceLabel.text = "$\(model.price)"
+        priceWDiscountLabel.text = "$\(price.roundToPlaces(places: 2))"
+        priceLabel.text = "$\(model.price.roundToPlaces(places: 2))"
         ratingLabel.text = "\(model.rating)"
     }
-
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
-    
-
 }

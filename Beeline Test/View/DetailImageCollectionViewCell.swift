@@ -16,6 +16,8 @@ class DetailImageCollectionViewCell: UICollectionViewCell {
     
     public var thumbnailImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = false
         return imageView
     }()
     
@@ -29,12 +31,8 @@ class DetailImageCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-            fatalError()
-        }
-    
-    override func layoutSubviews() {
-            super.layoutSubviews()
-        }
+        fatalError()
+    }
     
     // MARK: - Setup -
     
@@ -45,25 +43,6 @@ class DetailImageCollectionViewCell: UICollectionViewCell {
     private func setupConstraints(){
         thumbnailImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-    }
-    
-    @objc func showDiscountVC(){
-        print("akcciiiii vc")
-    }
-    
-    // MARK: - ? -
-    
-    override func prepareForReuse() {
-          super.prepareForReuse()
-      }
-    
-    // MARK: - Configuration -
-    
-    public func configure(with items: ProductData) {
-        let images = items.images.map {
-            let source = ImageResource(downloadURL: URL(string: $0.self)!)
-            thumbnailImage.kf.setImage(with: source)
         }
     }
 }

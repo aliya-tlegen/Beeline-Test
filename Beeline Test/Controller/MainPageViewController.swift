@@ -72,7 +72,6 @@ class MainPageViewController: UIViewController {
     
     private func setupViews() {
         view.addSubview(collectionView)
-//        collectionView.addSubview(stackView)
     }
     
     private func setupConstraints() {

@@ -20,7 +20,6 @@ class ImageView: UIView {
         }
     }
     
-    
     var isHideActionButton = false
     {
         didSet{
@@ -47,7 +46,7 @@ class ImageView: UIView {
 
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionView.setCollectionViewLayout(collectionViewFlowLayout, animated: true)
-        collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionViewFlowLayout.scrollDirection = .horizontal
         collectionViewFlowLayout.minimumLineSpacing = 0
         collectionViewFlowLayout.minimumInteritemSpacing = 0
@@ -57,7 +56,7 @@ class ImageView: UIView {
         collectionView.reloadData()
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
-        collectionView.layer.cornerRadius = 12
+//        collectionView.layer.cornerRadius = 12
         return collectionView
     }()
     
@@ -91,8 +90,8 @@ class ImageView: UIView {
     private func setupConstraints(){
         collectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.left.right.equalToSuperview().inset(20)
-            $0.height.equalTo(150)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(300)
         }
         pageController.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -124,9 +123,7 @@ extension ImageView: UICollectionViewDataSource{
                    withReuseIdentifier: DetailImageCollectionViewCell.identifier,
                    for: indexPath
                ) as! DetailImageCollectionViewCell
-//        cell.configure(with: items)
         cell.thumbnailImage.kf.setImage(with: ImageResource(downloadURL: URL(string: item)!))
-        cell.backgroundColor = .yellow
         cell.isHideActionButton = isHideActionButton
         return cell
     }

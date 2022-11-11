@@ -14,7 +14,7 @@ protocol ActionDelegate {
 
 class DetailsViewController: UIViewController {
     
-    // MARK: - Private variables -
+    // MARK: - Public variables -
     
     public var imageCollection = ImageView()
     
@@ -24,52 +24,31 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    private func setProducts() {
-        guard let product = product else { return }
-        titleLabel.text = product.title
-        categoryLabel.text = product.category
-        priceLabel.text = "$\(product.price)"
-        ratingLabel.text = "$\(product.rating)"
-        imageCollection.items = product.images
-    }
-        
-//        if let products = products, !products.isEmpty {
-//            imageCollection.items = product
-//        } else {
-//            imageCollection.items = [Banner(bannerImage: restaurant.restaurantImage, bannerTitle: "")]
-//        }
-    
-    // MARK: - Public variables -
-
-    
-    
     // MARK: - Private variables -
     
-    private lazy var thumbnailImage: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.layer.cornerRadius = 10
-        return image
-    }()
-    
-    private lazy var titleLabel: UILabel = {
+    private lazy var priceWDiscountLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .left
-        return label
-    }()
-    
-    private lazy var categoryLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .left
+        label.font = Fonts.interSemiBold175
+        label.textColor = Colors.red
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textAlignment = .left
+        label.font = Fonts.interMedium175
+        label.attributedText = Constant.AttributedText.attributedText
+        label.textColor = .gray
+        return label
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = Fonts.interMedium14
         label.textAlignment = .left
         return label
     }()
@@ -80,11 +59,48 @@ class DetailsViewController: UIViewController {
         return image
     }()
     
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = Fonts.interMedium14
+        label.textColor = .darkGray
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = Fonts.interMedium16
+        label.textColor = .darkGray
+        label.textAlignment = .left
+        return label
+    }()
+    
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = Fonts.interMedium16
         label.textAlignment = .left
         return label
+    }()
+    
+    private lazy var buyNowButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Buy Now", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = Colors.red
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private lazy var addToCartButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Add To Cart", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .orange
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     // MARK: - Lifecycle -
@@ -96,43 +112,80 @@ class DetailsViewController: UIViewController {
         setupConstraints()
     }
     
-    // MARK: - Initialization -
+    // MARK: - Actions -
     
-    private func setupViews(){
-        view.addSubview(imageCollection)
-        view.addSubview(titleLabel)
-        view.addSubview(priceLabel)
-        view.addSubview(ratingLabel)
-        view.addSubview(categoryLabel)
+    public func calculatePercentage(value: Double, percentageVal: Double) -> Double {
+        let val = value - (value * (percentageVal/100))
+        return val
     }
     
     // MARK: - Setup -
+    
+    private func setProducts() {
+        guard let product = product else { return }
+        titleLabel.text = product.title
+//        categoryLabel.text = product.category
+        let price = calculatePercentage(value: product.price, percentageVal: product.discountPercentage)
+        priceWDiscountLabel.text = "$\(price.roundToPlaces(places: 2))"
+        priceLabel.text = "$\(product.price.roundToPlaces(places: 2))"
+        ratingLabel.text = "\(product.rating)"
+        descriptionLabel.text = product.description
+        imageCollection.items = product.images
+    }
+    
+    private func setupViews(){
+        [imageCollection, titleLabel, starImage, descriptionLabel, priceWDiscountLabel, priceLabel, ratingLabel, categoryLabel, buyNowButton, addToCartButton].forEach{
+            view.addSubview($0)
+        }
+    }
     
     private func setupConstraints(){
         imageCollection.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.right.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().offset(50)
+            $0.left.right.equalToSuperview()
+        }
+        priceWDiscountLabel.snp.makeConstraints {
+            $0.top.equalTo(imageCollection.snp.bottom).offset(10)
+            $0.left.equalToSuperview().offset(20)
+        }
+        priceLabel.snp.makeConstraints {
+            $0.top.equalTo(imageCollection.snp.bottom).offset(10)
+//            $0.left.equalTo(priceWDiscountLabel.snp.right).offset(10)
+            $0.right.equalToSuperview().inset(20)
         }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(imageCollection.snp.bottom).offset(10)
-            $0.centerX.equalToSuperview()
-//            $0.left.equalToSuperview().inset(20)
+            $0.top.equalTo(priceWDiscountLabel.snp.bottom).offset(10)
+            $0.left.equalToSuperview().inset(20)
+        }
+        starImage.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.left.equalToSuperview().inset(20)
+            $0.size.equalTo(15)
+        }
+        ratingLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.left.equalTo(starImage.snp.right).offset(5)
         }
         categoryLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
-            $0.centerX.equalToSuperview()
-//            $0.left.equalToSuperview().inset(20)
+            $0.top.equalTo(starImage.snp.bottom).offset(10)
+            $0.left.equalToSuperview().inset(20)
+        }
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(categoryLabel.snp.bottom).offset(10)
+            $0.left.right.equalToSuperview().inset(20)
+        }
+        buyNowButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(50)
+            $0.left.equalToSuperview().offset(20)
+            $0.width.equalTo(180)
+            $0.height.equalTo(50)
+        }
+        addToCartButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(50)
+            $0.right.equalToSuperview().inset(20)
+            $0.width.equalTo(180)
+            $0.height.equalTo(50)
         }
     }
 }
-
-// MARK: - Extensions -
-
-
-
-    // MARK: - Setup -
-    
-    
-    
-    // MARK: - Actions -
 
