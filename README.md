@@ -11,7 +11,11 @@ https://user-images.githubusercontent.com/82160673/201408019-4be38e96-5de9-43d5-
 
 # Tech Stack
 
-Used: UIKit, SnapKit, [Dummy JSON](https://dummyjson.com/products "Dummy JSON"), KingFisher, Moya
+- UIKit
+- [Dummy JSON](https://dummyjson.com/products "Dummy JSON")
+- [SnapKit](https://github.com/SnapKit/SnapKit "SnapKit")
+- [KingFisher](https://github.com/onevcat/Kingfisher "KingFisher")
+- [Moya](https://github.com/Moya/Moya "Moya")
 
 # Installation 
 
